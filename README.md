@@ -2,6 +2,13 @@
 
 โปรเจกต์นี้จะมีการติดตั้ง TailwindCSS และ daisyUI ไว้แล้ว แล้วทำ Navbar กับ Drawer ไว้ให้ด้วย
 
+## เริ่มใช้งาน
+
+```
+npm install
+npm run dev
+```
+
 
 ## เปลี่ยนธีม
 
