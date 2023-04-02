@@ -13,3 +13,7 @@ npm run dev
 ## เปลี่ยนธีม
 
 ตอนเริ่มต้นจะตั้งธีมไว้ที่ cupcake สามารถไปเปลี่ยนได้ที่ไฟล์ src/app.html ตรง data-theme
+
+## เปลี่ยนชื่อ Session
+
+ไปเปลียนได้ที่ src/lib/config ตัวแปร authSessionName

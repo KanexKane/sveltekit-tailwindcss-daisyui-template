@@ -2,9 +2,22 @@
 	import '../app.css';
 
 	let drawerToggle = false;
+	let menus = [
+		{ href: '/', text: 'Home' },
+		{ href: '/about-us', text: 'About Us' },
+		{ href: '/auth/login', text: 'Login' }
+	];
 
 	function closeDrawer() {
 		drawerToggle = false;
+	}
+
+	function confirmBeforeLogout(e) {
+		if (confirm('ออกจากระบบ?')) {
+			e.target.submit();
+			return true;
+		}
+		return false;
 	}
 </script>
 
@@ -33,8 +46,20 @@
 			<div class="flex-none hidden lg:block">
 				<ul class="menu menu-horizontal">
 					<!-- Navbar menu content here -->
-					<li><a href="/">Home</a></li>
-					<li><a href="/about-us">About us</a></li>
+					{#each menus as menu}
+						<li>
+							<a href={menu.href}>{menu.text}</a>
+						</li>
+					{/each}
+					<li>
+						<form
+							action="/auth/logout"
+							method="POST"
+							on:submit|preventDefault={confirmBeforeLogout}
+						>
+							<button type="submit">Logout</button>
+						</form>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -103,8 +128,11 @@
 		<label for="my-drawer-3" class="drawer-overlay" />
 		<ul class="menu p-4 w-80 bg-base-100">
 			<!-- Sidebar content here -->
-			<li><a href="/" on:click={closeDrawer}>Home</a></li>
-			<li><a href="/about-us" on:click={closeDrawer}>About Us</a></li>
+			{#each menus as menu}
+				<li>
+					<a href={menu.href} on:click={closeDrawer}>{menu.text}</a>
+				</li>
+			{/each}
 		</ul>
 	</div>
 </div>
