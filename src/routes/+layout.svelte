@@ -1,12 +1,10 @@
 <script>
 	import '../app.css';
 
+	export let data;
+	console.log(data);
+
 	let drawerToggle = false;
-	let menus = [
-		{ href: '/', text: 'Home' },
-		{ href: '/about-us', text: 'About Us' },
-		{ href: '/auth/login', text: 'Login' }
-	];
 
 	function closeDrawer() {
 		drawerToggle = false;
@@ -46,20 +44,24 @@
 			<div class="flex-none hidden lg:block">
 				<ul class="menu menu-horizontal">
 					<!-- Navbar menu content here -->
-					{#each menus as menu}
-						<li>
-							<a href={menu.href}>{menu.text}</a>
-						</li>
-					{/each}
 					<li>
-						<form
-							action="/auth/logout"
-							method="POST"
-							on:submit|preventDefault={confirmBeforeLogout}
-						>
-							<button type="submit">Logout</button>
-						</form>
+						<a href="/">Home</a>
 					</li>
+					{#if data.user}
+						<li>
+							<form
+								action="/auth/logout"
+								method="POST"
+								on:submit|preventDefault={confirmBeforeLogout}
+							>
+								<button type="submit">Logout</button>
+							</form>
+						</li>
+					{:else}
+						<li>
+							<a href="/auth/login">Login</a>
+						</li>
+					{/if}
 				</ul>
 			</div>
 		</div>
@@ -128,11 +130,20 @@
 		<label for="my-drawer-3" class="drawer-overlay" />
 		<ul class="menu p-4 w-80 bg-base-100">
 			<!-- Sidebar content here -->
-			{#each menus as menu}
+			<li>
+				<a href="/">Home</a>
+			</li>
+			{#if data.user}
 				<li>
-					<a href={menu.href} on:click={closeDrawer}>{menu.text}</a>
+					<form action="/auth/logout" method="POST" on:submit|preventDefault={confirmBeforeLogout}>
+						<button type="submit">Logout</button>
+					</form>
 				</li>
-			{/each}
+			{:else}
+				<li>
+					<a href="/auth/login">Login</a>
+				</li>
+			{/if}
 		</ul>
 	</div>
 </div>
