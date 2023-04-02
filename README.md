@@ -17,3 +17,7 @@ npm run dev
 ## เปลี่ยนชื่อ Session
 
 ไปเปลียนได้ที่ src/lib/config ตัวแปร authSessionName
+
+## อยากให้หน้าไหนมีการรันจาก server
+
+ต้องสร้างไฟล์ .server.js ด้วย เช่น +page.svelte แล้วก็ต้องมี +page.server.js
