@@ -2,7 +2,6 @@
 	import '../app.css';
 
 	export let data;
-	console.log(data);
 
 	let drawerToggle = false;
 
@@ -47,7 +46,7 @@
 					<li>
 						<a href="/">Home</a>
 					</li>
-					{#if data.user}
+					{#if Object.keys(data.user).length > 0}
 						<li>
 							<form
 								action="/auth/logout"
@@ -133,7 +132,7 @@
 			<li>
 				<a href="/">Home</a>
 			</li>
-			{#if data.user}
+			{#if Object.keys(data.user).length > 0}
 				<li>
 					<form action="/auth/logout" method="POST" on:submit|preventDefault={confirmBeforeLogout}>
 						<button type="submit">Logout</button>
